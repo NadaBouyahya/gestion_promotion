@@ -1,12 +1,19 @@
 <?php
-    include 'conn.php';
-    class Promo extends Connection{
+    class Promo {
+        //connect database
+        private $host = "localhost";
+        private $user ="root";
+        private $password ="";
+        private $db = "projet1";
+        private $conn;
         public $id;
         public $name;
 
-        function __constract($id, $name) {
+        //
+        function __construct($id, $name) {
             $this->id = $id;
             $this->name = $name;
+            $this->conn = new mysqli($this->host, $this->user, $this->password, $this->db);
         }
 
         function add_promo(){

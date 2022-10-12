@@ -1,7 +1,12 @@
 <?php 
 include '../data-access/promo.php';
 
-$promo = new Promo();
+	if(isset($_POST['submit'])){
+		$promo = new Promo(NULL, $_POST['name']);
+		if(!empty($_POST['name'])){
+			$promo->add_promo();
+		}
+	}
 ?>
 
 
@@ -22,7 +27,7 @@ $promo = new Promo();
 <form action="" method="POST">
 Nom de promotion: <input type="text" name="name" >                                                          
    
-<button type="submit">Envoyer</button>
+<button type="submit" name="submit">Envoyer</button>
 </form>
 </body>
 </html>
