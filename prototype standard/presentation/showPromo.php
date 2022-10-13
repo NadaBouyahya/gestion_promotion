@@ -1,24 +1,14 @@
-<?php
+<?php 
+include '../data-access/promotionDAL.php';
 
+$promotionDAL = new PromotionDAL();
 
-// include '../data-access/promo.php';
-
-//add promo
-// if (isset($_POST['submit'])) {
-// 	$promo = new Promo(NULL, $_POST['name']);
-// 	if (!empty($_POST['name'])) {
-// 		$promo->add_promo();
-// 	}
-// }
-
-//delete promo 
-// if (isset($_GET['id_delete'])) {
-// 	$promo = new Promo($_GET['id_delete'], NULL);
-// 	$promo->delete_promo();
-// }
+	if(isset($_POST["submit"])){
+		$NewPromo = new Promotion();
+		$NewPromo->setName($_POST['name']);
+		$promotionDAL->addPromo($NewPromo);
+	};
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,6 +39,7 @@
 		<button type="submit" name="submit">Envoyer</button>
 	</form>
 
+
 	<table class="table mt=5">
 		<thead>
 			<tr>
@@ -58,24 +49,22 @@
 		</thead>
 		<tbody>
 			<?php
-			// $get_data = new Promo(NULL, NULL);
-			// $data = $get_data->select_promo();
+			$get_data = new PromotionDAL(NULL, NULL);
+			$data = $get_data->selectAllPromo();
 
-			// if ($data->num_rows > 0) {
-			// 	while ($row = $data->fetch_assoc()) {
-			// 		echo "<tr>
-			// 			<td>" . $row['name'] . "</td>
-			// 			<td>
-			// 				<a href='editPromo.php?id_edit=" . $row['id'] . "'>Edit</a>
-			// 				<a href='ListPromo.php?id_delete=" . $row['id'] . "'> Delete</a>
-			// 			</td>
-			// 		</tr>
-			// 		";
-			// 	}
-			// }
+			if ($data->num_rows > 0) {
+				while ($row = $data->fetch_assoc()) {
+					echo "<tr>
+						<td>" . $row['name'] . "</td>
+						<td>
+							<a href='editPromo.php?id_edit=" . $row['id'] . "'>Edit</a>
+							<a href='ListPromo.php?id_delete=" . $row['id'] . "'> Delete</a>
+						</td>
+					</tr>
+					";
+				}
+			}
 			?>
-		</tbody>
-	</table>
 
 </body>
 
