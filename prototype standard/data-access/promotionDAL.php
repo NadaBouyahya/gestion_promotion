@@ -19,11 +19,29 @@ class PromotionDAL extends Connection{
         return mysqli_query($this->Connect(), $select);
     }
 
+    public function getPromotionById($promo){
+        $sqlGetData = "SELECT * FROM promotion WHERE id = ". $promo->getId();
+        return mysqli_query($this->Connect(), $sqlGetData);
+    }
+
+
     // delete promo
     public function deletePromo($promotion){
         $id = $promotion->getId();
         $delet = "DELETE FROM promotion WHERE id = $id";
         mysqli_query($this->Connect(), $delet);
+    }
+
+    // edit promo
+    function edit_promo($promotion){
+        $id = $promotion->getId();
+        $name = $promotion->getName();
+
+        $edit = "UPDATE promotion SET name = '$name'
+        WHERE id = $id";
+        mysqli_query($this->Connect(), $edit);
+
+        header('location: ../presentation/showPromo.php');
     }
 
 }
