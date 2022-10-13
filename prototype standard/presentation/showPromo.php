@@ -37,7 +37,7 @@ $promotionDAL = new PromotionDAL();
 
 	<nav>
 		<div class="topnav" style="margin-top: 50px; margin-left:80%;">
-			<input type="text" placeholder="Search..">
+			<input id="search" type="text" placeholder="Search..">
 		</div>
 	</nav>
 
@@ -54,7 +54,7 @@ $promotionDAL = new PromotionDAL();
 				<th>action</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="tbody">
 			<?php
 			$get_data = new PromotionDAL();
 			$data = $get_data->selectAllPromo();
@@ -72,6 +72,8 @@ $promotionDAL = new PromotionDAL();
 				}
 			}
 			?>
+
+			<script src="script.js"></script>
 
 </body>
 

@@ -44,5 +44,14 @@ class PromotionDAL extends Connection{
         header('location: ../presentation/showPromo.php');
     }
 
+    // search promo 
+
+    function search_promo($promotion){
+    $name = $promotion->getName();
+     
+    $search = "SELECT * FROM promotion
+     WHERE name LIKE '%$name%'";
+    return mysqli_query($this->Connect(), $search);
+
+    }
 }
-?>
