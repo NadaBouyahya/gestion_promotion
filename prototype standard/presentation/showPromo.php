@@ -8,6 +8,13 @@ $promotionDAL = new PromotionDAL();
 		$NewPromo->setName($_POST['name']);
 		$promotionDAL->addPromo($NewPromo);
 	};
+
+	if (isset($_GET['id_delete'])) {
+		$id = $_GET["id"];
+		$NewPromo = new Promotion();
+		$NewPromo->setId($id);
+		$promotionDAL->deletePromo($NewPromo);
+};
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +41,7 @@ $promotionDAL = new PromotionDAL();
 		</div>
 	</nav>
 
-	<form action="" method="POST" style="margin-top: 30px;">
+	<form action="showPromo.php" method="POST" style="margin-top: 30px;">
 		Nom de promotion: <input type="text" name="name">
 		<button type="submit" name="submit">Envoyer</button>
 	</form>
@@ -49,7 +56,7 @@ $promotionDAL = new PromotionDAL();
 		</thead>
 		<tbody>
 			<?php
-			$get_data = new PromotionDAL(NULL, NULL);
+			$get_data = new PromotionDAL();
 			$data = $get_data->selectAllPromo();
 
 			if ($data->num_rows > 0) {

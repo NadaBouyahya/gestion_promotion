@@ -16,9 +16,15 @@ class PromotionDAL extends Connection{
     // Get Promotion
     public function selectAllPromo(){
         $select = "SELECT * FROM promotion";
-        mysqli_query($this->Connect(), $select);
+        return mysqli_query($this->Connect(), $select);
     }
 
+    // delete promo
+    public function deletePromo($promotion){
+        $id = $promotion->getId();
+        $delet = "DELETE FROM promotion WHERE id = $id";
+        mysqli_query($this->Connect(), $delet);
+    }
 
 }
 ?>
