@@ -1,12 +1,10 @@
-DELETE DATABASE IF EXISTS;
+DROP DATABASE IF EXISTS projet1;
+
 CREATE DATABASE projet1;
 USE projet1;
 
-CREATE TABLE `promotion` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(250) NOT NULL
-) 
-
---
--- Dumping data for table `promotion`
---
+CREATE TABLE promotion(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(25)
+);
+INSERT INTO promotion(nom) VALUES("promo1"),("promo2"),("promo3"),("promo4");
