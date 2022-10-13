@@ -1,22 +1,14 @@
-<?php
-include '../data-access/promo.php';
+<?php 
+include '../data-access/promotionDAL.php';
 
-//add promo
-if (isset($_POST['submit'])) {
-	$promo = new Promo(NULL, $_POST['name']);
-	if (!empty($_POST['name'])) {
-		$promo->add_promo();
-	}
-}
+$promotionDAL = new PromotionDAL();
 
-//delete promo 
-if (isset($_GET['id_delete'])) {
-	$promo = new Promo($_GET['id_delete'], NULL);
-	$promo->delete_promo();
-}
+	if(isset($_POST["submit"])){
+		$NewPromo = new Promotion();
+		$NewPromo->setName($_POST['name']);
+		$promotionDAL->addPromo($NewPromo);
+	};
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,38 +27,17 @@ if (isset($_GET['id_delete'])) {
 	<header>
 		<h1>Ajouter promotion</h1>
 	</header>
-	<form action="" method="POST">
+
+	<nav>
+		<div class="topnav" style="margin-top: 50px; margin-left:80%;">
+			<input type="text" placeholder="Search..">
+		</div>
+	</nav>
+
+	<form action="" method="POST" style="margin-top: 30px;">
 		Nom de promotion: <input type="text" name="name">
 		<button type="submit" name="submit">Envoyer</button>
 	</form>
-
-	<table class="table mt=5">
-		<thead>
-			<tr>
-				<th>name</th>
-				<th>action</th>
-			</tr>
-		</thead>
-		<tbody>
-			<?php
-			$get_data = new Promo(NULL, NULL);
-			$data = $get_data->select_promo();
-
-			if ($data->num_rows > 0) {
-				while ($row = $data->fetch_assoc()) {
-					echo "<tr>
-						<td>" . $row['name'] . "</td>
-						<td>
-							<a href='#'>Edit</a>
-							<a href='ListPromo.php?id_delete=" . $row['id'] . "'> Delete</a>
-						</td>
-					</tr>
-					";
-				}
-			}
-			?>
-		</tbody>
-	</table>
 
 </body>
 
