@@ -58,7 +58,7 @@ class PromoManager extends Connection{
         $search = "SELECT * FROM promotion WHERE
         name LIKE '%$name%' ";
 
-        mysqli_query($this->Connect(), $search);
+        return mysqli_query($this->Connect(), $search);
     }
 }
 ?>
